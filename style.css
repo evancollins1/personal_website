@@ -461,6 +461,15 @@ html, body {
     animation: fadeIn 1s;
   }
 
+.container,
+.subtitle,
+.subtitle blockquote,
+.quote blockquote,
+.footer-basic,
+.footer-basic .social > a {
+  background-color: white;
+}
+
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
   from {opacity: 0;} 
@@ -470,4 +479,77 @@ html, body {
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity:1 ;}
+}
+
+@media (max-width: 992px) and (min-width: 882px) {
+  .container {
+    width: 96%;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .subtitle blockquote {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .left {
+    float: left;
+    width: 20%;
+    margin: 0;
+    padding: 2px 15px;
+  }
+
+  .middle {
+    float: left;
+    width: 80%;
+    margin: 0;
+    padding: 2px 15px;
+  }
+
+  .right {
+    float: none;
+    clear: both;
+    width: 100%;
+    margin: 0;
+    padding: 14px 10px 6px;
+    text-align: center;
+  }
+
+  .right img {
+    display: block;
+    width: 50%;
+    max-width: 240px;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 881px) {
+  .left,
+  .middle,
+  .right {
+    float: none;
+    width: 100%;
+    margin: 0;
+    padding: 8px 15px;
+  }
+
+  .right {
+    padding-top: 4px;
+    padding-bottom: 12px;
+    text-align: center;
+  }
+
+  .right img {
+    display: block;
+    width: 70%;
+    max-width: 220px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .subtitle blockquote {
+    padding: 10px 6px;
+  }
 }
