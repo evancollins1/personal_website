@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,7 +43,7 @@
         "nucleic acid delivery",
         "data science",
         "self-driving laboratories",
-        "self-driving labs"
+        "self-driving labs",
         "systems neuroscience",
         "cognitive psychology"
       ],
@@ -65,6 +65,81 @@
 
     gtag('config', 'UA-130035334-1');
   </script>
+  <style>
+    /* publication tabs + search (from design 1), styled to match the site */
+    .pubcontrols { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; padding: 0 10px 6px; }
+    .pubtabs { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pubtab { font-size: 15px; font-weight: 400; padding: 5px 14px; border-radius: 999px; border: 1px solid #ccc; background: white; color: #4b4c4d; cursor: pointer; transition: all 150ms ease-in-out; }
+    .pubtab:hover { border-color: #326861; color: #326861; }
+    .pubtab.on { background: #326861; border-color: #326861; color: white; }
+    .pubsearch { font-size: 15px; padding: 6px 14px; border-radius: 999px; border: 1px solid #ccc; width: 280px; max-width: 100%; color: black; }
+    .pubsearch:focus { outline: none; border-color: #326861; box-shadow: 0 0 0 3px rgba(50,104,97,.15); }
+    .pubcount { font-size: 14px; font-weight: 300; color: #777; padding: 0 10px; margin: 4px 0 10px; }
+    .pubtags { margin-top: 10px; }
+    .pubtag { display: inline-block; font-size: 12px; font-weight: 400; padding: 1px 9px; border-radius: 6px; margin-right: 6px; }
+    .pubtag.nano { background: rgba(74,86,216,.1); color: #4a56d8; }
+    .pubtag.neuro { background: rgba(214,92,46,.1); color: #c4522a; }
+    .pubtag.psych { background: rgba(50,104,97,.1); color: #326861; }
+    .pubtag.first { background: rgba(214,60,116,.1); color: #c23468; }
+    .pub.hide { display: none; }
+    .pubtag.author { background: rgba(196,150,20,.14); color: #9a7208; }
+    .pubtag.contrib { background: rgba(120,120,120,.12); color: #555; }
+    html.dark .pubtag.author { background: rgba(232,195,106,.16); color: #ecc870; }
+    html.dark .pubtag.contrib { background: rgba(200,200,200,.12); color: #c4c9c7; }
+    .press .column.middle { width: 75%; }
+    .press .pubtags { margin-top: 8px; }
+    @media (max-width: 600px) { .press .column.middle { width: 100%; } }
+    /* gap between the bio and the Publications heading */
+    .quote { padding-bottom: 0; }
+    .quote blockquote { margin-bottom: 0; }
+    .pubsection { padding-top: 0; }
+    .pubsection h1 { margin-top: 50px; }
+    /* rounded card around each publication */
+    blockquote.pub { border: 1px solid #e2e2e2; border-radius: 16px; padding: 18px 20px; margin: 0 10px 16px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,.04); transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out; }
+    blockquote.pub:hover { border-color: #326861; box-shadow: 0 4px 14px rgba(50,104,97,.10); }
+    blockquote.pub .row { margin: 0; }
+    blockquote.pub { font-size: 17px; line-height: 1.45; padding: 14px 18px; margin-bottom: 12px; }
+    blockquote.pub .column.middle a b { font-size: 18px; }
+    blockquote.pub img { border-radius: 8px; }
+    @media (max-width: 600px) { blockquote.pub { padding: 14px; margin: 0 0 14px; } }
+    .pubempty { display: none; font-size: 18px; font-weight: 300; color: #777; padding: 10px; }
+    mark { background: rgba(50,104,97,.18); padding: 0 1px; border-radius: 2px; }
+    @media (max-width: 600px) { .pubsearch { width: 100%; } }
+    /* ---- dark mode ---- */
+    .themetoggle { font-size: 24px; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; border-radius: 50%; border: 1px solid #ccc; margin: 0 8px; padding: 0; background: transparent; color: inherit; opacity: .75; cursor: pointer; }
+    .themetoggle:hover { opacity: .9; }
+    html.dark .themetoggle { border-color: #3a423f; color: #e4e7e6; }
+    .themetoggle .icon-sun { display: none; }
+    html.dark .themetoggle .icon-sun { display: inline-block; }
+    html.dark .themetoggle .icon-moon { display: none; }
+    html.dark { color-scheme: dark; }
+    html.dark, html.dark body, html.dark .subtitle, html.dark .subtitle blockquote:not(.pub), html.dark .quote,
+    html.dark .footer-basic, html.dark .footer-basic .social > a, html.dark figcaption { background-color: #121615 !important; }
+    html.dark body, html.dark .subtitle, html.dark .quote, html.dark figcaption, html.dark .footer-basic { color: #e4e7e6; }
+    html.dark .quote blockquote { background-color: #1c2220 !important; }
+    html.dark a, html.dark a:hover { color: #7fc2b8; }
+    html.dark .footer-basic .social > a { color: #e4e7e6; border-color: #3a423f; }
+    html.dark blockquote.pub { background: #1a1f1e; border-color: #2c3431; box-shadow: none; }
+    html.dark blockquote.pub:hover { border-color: #7fc2b8; box-shadow: 0 4px 14px rgba(0,0,0,.4); }
+    html.dark .pubtab, html.dark .pubsearch { background: #1a1f1e; border-color: #3a423f; color: #e4e7e6; }
+    html.dark .pubtab:hover { border-color: #7fc2b8; color: #7fc2b8; }
+    html.dark .pubtab.on { background: #7fc2b8; border-color: #7fc2b8; color: #0f1a18; }
+    html.dark .pubsearch:focus { border-color: #7fc2b8; box-shadow: 0 0 0 3px rgba(127,194,184,.2); }
+    html.dark .pubtag.nano { background: rgba(130,140,255,.16); color: #a9b1ff; }
+    html.dark .pubtag.neuro { background: rgba(240,130,90,.16); color: #f2a283; }
+    html.dark .pubtag.psych { background: rgba(127,194,184,.16); color: #8fd1c6; }
+    html.dark .pubtag.first { background: rgba(240,100,150,.16); color: #f39bbd; }
+    html.dark mark { background: rgba(127,194,184,.3); color: inherit; }
+    html.dark .pubempty { color: #9aa3a0; }
+  </style>
+  <script>
+    // dark by default; only a visitor who picked light sees light
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (t !== "light") document.documentElement.classList.add("dark");
+    })();
+  </script>
 </head>
 
 <body>
@@ -74,11 +149,11 @@
     <div class="footer-basic">
       <footer>
           <div class="social">
-            <a href="/"><ion-icon name="home-outline" class="icon"></ion-icon></a>
-            <a href="https://scholar.google.com/citations?hl=en&user=Ok6RqsoAAAAJ"><ion-icon name="school-outline" class="icon"></ion-icon></a>
-            <a href="https://github.com/evancollins1"><ion-icon name="logo-github" class="icon"></ion-icon></a>
-            <a href="https://www.linkedin.com/in/evan-thomas-collins/"><ion-icon name="logo-linkedin" class="icon"></ion-icon></a>
-            <a href="/Evan_Collins_CV.pdf" style="font-size:18px;font-weight:700;text-decoration:none;" onmouseover="this.style.textDecoration='none'">CV</a>
+            <a href="https://scholar.google.com/citations?hl=en&user=Ok6RqsoAAAAJ" target="_blank" rel="noopener"><ion-icon name="school-outline" class="icon"></ion-icon></a>
+            <a href="https://github.com/evancollins1" target="_blank" rel="noopener"><ion-icon name="logo-github" class="icon"></ion-icon></a>
+            <a href="https://www.linkedin.com/in/evan-thomas-collins/" target="_blank" rel="noopener"><ion-icon name="logo-linkedin" class="icon"></ion-icon></a>
+            <a href="Evan_Collins_CV.pdf" style="font-size:18px;font-weight:700;text-decoration:none;" onmouseover="this.style.textDecoration='none'" target="_blank" rel="noopener">CV</a>
+            <button class="themetoggle" id="themetoggle" aria-label="Toggle dark mode" title="Toggle dark mode"><ion-icon name="moon-outline" class="icon icon-moon"></ion-icon><ion-icon name="sunny-outline" class="icon icon-sun"></ion-icon></button>
           </div>
       </footer>
     </div>
@@ -99,10 +174,21 @@
 
 
 
-<div class = "container subtitle">
+<div class = "container subtitle pubsection">
 <h1><b>Publications</b></h1>
 
-<blockquote>
+<div class="pubcontrols">
+  <div class="pubtabs" role="tablist" aria-label="Filter publications by field">
+    <button class="pubtab on" data-area="all" role="tab" aria-selected="true">All</button>
+    <button class="pubtab" data-area="nano" role="tab" aria-selected="false">Nanomedicine</button>
+    <button class="pubtab" data-area="neuro" role="tab" aria-selected="false">Neuroscience</button>
+    <button class="pubtab" data-area="psych" role="tab" aria-selected="false">Psychology</button>
+    <button class="pubtab" data-area="first" role="tab" aria-selected="false">First author</button>
+  </div>
+  <input class="pubsearch" id="pubsearch" type="search" placeholder="Search" aria-label="Search publications">
+</div>
+
+<blockquote class="pub" data-area="neuro">
   <div class="row">
     <div class="column left">
       <i>Epilepsia</i>
@@ -115,6 +201,7 @@
       <br>
       Watson E, <b>Collins E</b>, Chishti O, Bose-Roy R, McGrath H, Segal N A, Lehman R, Sivaraju A, Zaveri H P,
 Spencer D D
+      <div class="pubtags"><span class="pubtag neuro">Neuroscience</span></div>
     </div>
     <div class="column right">
       <img src="images/epilepsia.png" 
@@ -124,7 +211,7 @@ Spencer D D
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="nano">
   <div class="row">
     <div class="column left">
       <i>Nature Communications</i>
@@ -137,6 +224,7 @@ Spencer D D
       <br>
       <b>Collins E*</b>, Ji J*, Kim SG*, Witten J, Kim S, Zhu R, Park P, Jung M, Park A, Manan R S, Rudra A, Jeang W J,
 Langer R, Anderson D G, Im W
+      <div class="pubtags"><span class="pubtag nano">Nanomedicine</span><span class="pubtag first">First author</span></div>
     </div>
     <div class="column right">
       <img src="images/lnpdb_fig1.png" 
@@ -146,7 +234,7 @@ Langer R, Anderson D G, Im W
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="neuro">
   <div class="row">
     <div class="column left">
       <i>Neurology</i>
@@ -159,6 +247,7 @@ Langer R, Anderson D G, Im W
       <br>
       Chishti O, <b>Collins E</b>, McGrath H, Zhang T, Quraishi I H, Hirsch L J, Benjamin C, Damisah E C, Zaveri H P,
 Spencer D D, Sivaraju A
+      <div class="pubtags"><span class="pubtag neuro">Neuroscience</span></div>
     </div>
     <div class="column right">
       <img src="images/chishti_fig4.png" 
@@ -168,7 +257,7 @@ Spencer D D, Sivaraju A
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="nano">
   <div class="row">
     <div class="column left">
       <i>Nature Computational Science</i>
@@ -180,6 +269,7 @@ Spencer D D, Sivaraju A
       <br>
       <br>
       <b>Collins E</b>, Langer R, Anderson D G
+      <div class="pubtags"><span class="pubtag nano">Nanomedicine</span><span class="pubtag first">First author</span></div>
     </div>
     <div class="column right">
       <img src="images/sdl.png" 
@@ -189,7 +279,7 @@ Spencer D D, Sivaraju A
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="neuro">
   <div class="row">
     <div class="column left">
       <i>Frontiers in Network Physiology</i>
@@ -202,6 +292,7 @@ Spencer D D, Sivaraju A
       <br>
       <b>Collins E</b>, Chishti O, McGrath H, Obaid S, King A, Qiu E, Gabriel E, Shen X, Arora J, Papademetris X,
       Constable T R, Spencer D D, Zaveri H P
+      <div class="pubtags"><span class="pubtag neuro">Neuroscience</span><span class="pubtag first">First author</span></div>
     </div>
     <div class="column right">
       <img src="images/collins_frontiers_fig1.png" 
@@ -211,7 +302,7 @@ Spencer D D, Sivaraju A
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="nano">
   <div class="row">
     <div class="column left">
       <i>Advanced Materials</i>
@@ -224,6 +315,7 @@ Spencer D D, Sivaraju A
       <br>
       Jeang W J*, Wong B M*, Zhao Y, Manan R, Jiang A L, Bose S, <b>Collins E</b>, McMullen P, Rosenboom J, Lathwal
       S, Langer R, Anderson D G
+      <div class="pubtags"><span class="pubtag nano">Nanomedicine</span></div>
     </div>
     <div class="column right">
       <img src="images/aim_polymers.png" 
@@ -233,7 +325,7 @@ Spencer D D, Sivaraju A
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="nano">
   <div class="row">
     <div class="column left">
       <i>Nature Biotechnology</i>
@@ -245,6 +337,7 @@ Spencer D D, Sivaraju A
       <br>
       <br>
       Witten J*, Raji I*, Manan R S*, Beyer E, Bartlett S, Tang Y, Ebadi M, Lei J, Nguyen D, Oladimeji F, Jiang A Y, MacDonald E, Hu Y, Mughal H, Self A, <b>Collins E</b>, Yan Z, Engelhardt J F, Langer R, Anderson D G
+      <div class="pubtags"><span class="pubtag nano">Nanomedicine</span></div>
     </div>
     <div class="column right">
       <img src="images/lion.png" 
@@ -254,7 +347,7 @@ Spencer D D, Sivaraju A
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="neuro">
   <div class="row">
     <div class="column left">
       <i>Nature Communications</i>
@@ -267,6 +360,7 @@ Spencer D D, Sivaraju A
       <br>
       <b>Collins E</b>, Chishti O, Obaid S, King A, McGrath H, Shen X, Arora J, Papademetris X, Constable T R, Spencer
 D D, Zaveri H P
+      <div class="pubtags"><span class="pubtag neuro">Neuroscience</span><span class="pubtag first">First author</span></div>
     </div>
     <div class="column right">
       <img src="images/sf_fig3.png" 
@@ -276,7 +370,7 @@ D D, Zaveri H P
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="neuro">
   <div class="row">
     <div class="column left">
       <i>Brain Stimulation</i>
@@ -290,6 +384,7 @@ D D, Zaveri H P
       <br>
       Sivaraju A, Quraishi I, <b>Collins E</b>, McGrath H, Ramos A, Turk-Browne N, Zaveri H P, Damisah E, Spencer D D,
 Hirsch L J
+      <div class="pubtags"><span class="pubtag neuro">Neuroscience</span></div>
     </div>
     <div class="column right">
       <img src="images/sivaraju_fig2.png" 
@@ -299,7 +394,7 @@ Hirsch L J
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="neuro">
   <div class="row">
     <div class="column left">
       <i>Scientific Reports</i>
@@ -312,7 +407,8 @@ Hirsch L J
       <br>
       <br>
       McGrath H, Zaveri H P, <b>Collins E</b>, Jafar T, Chishti O, Obaid S, Ksendzovsky A, Wu K, Papademetris X,
-Spencer D D 
+Spencer D D
+      <div class="pubtags"><span class="pubtag neuro">Neuroscience</span></div> 
     </div>
     <div class="column right">
       <img src="images/mcgrath_fig1.png" 
@@ -322,7 +418,7 @@ Spencer D D
   </div>
 </blockquote>
 
-<blockquote>
+<blockquote class="pub" data-area="psych">
   <div class="row">
     <div class="column left">
       <i>Management Science</i>
@@ -335,6 +431,7 @@ Spencer D D
       <br>
       <br>
       Pennycook G, Bear A, <b>Collins E</b>, & Rand D G
+      <div class="pubtags"><span class="pubtag psych">Psychology</span></div>
     </div>
     <div class="column right">
       <img src="images/implied_truth_effect.png" 
@@ -344,6 +441,107 @@ Spencer D D
   </div>
 </blockquote>
 
+<p class="pubempty" id="pubempty">No publications match your search.</p>
+
+</div>
+
+<div class = "container subtitle pubsection press">
+<h1><b>Press</b></h1>
+
+<div class="pubcontrols">
+  <div class="pubtabs" role="tablist" aria-label="Filter press by role">
+    <button class="pubtab on" data-area="all" role="tab" aria-selected="true">All</button>
+    <button class="pubtab" data-area="author" role="tab" aria-selected="false">Author</button>
+    <button class="pubtab" data-area="contrib" role="tab" aria-selected="false">Contributor</button>
+  </div>
+  <input class="pubsearch" type="search" placeholder="Search" aria-label="Search press">
+</div>
+
+<blockquote class="pub" data-area="contrib">
+  <div class="row">
+    <div class="column left">
+      <i>Nature</i>
+      <br>
+      (2026)
+    </div>
+    <div class="column middle">
+      <a href="https://www.nature.com/articles/d41586-026-03587-x" target="_blank" rel="noopener"><b>These AI agents design your perfect robot-powered lab — and run it for you</b></a>
+      <div class="pubtags"><span class="pubtag contrib">Contributor</span></div>
+    </div>
+  </div>
+</blockquote>
+
+<blockquote class="pub" data-area="contrib">
+  <div class="row">
+    <div class="column left">
+      <i>Nature</i>
+      <br>
+      (2026)
+    </div>
+    <div class="column middle">
+      <a href="https://www.nature.com/articles/d41586-026-00453-8" target="_blank" rel="noopener"><b>Will self-driving ‘robot labs’ replace biologists? Paper sparks debate</b></a>
+      <div class="pubtags"><span class="pubtag contrib">Contributor</span></div>
+    </div>
+  </div>
+</blockquote>
+
+<blockquote class="pub" data-area="contrib">
+  <div class="row">
+    <div class="column left">
+      <i>Yale News</i>
+      <br>
+      (2024)
+    </div>
+    <div class="column middle">
+      <a href="https://news.yale.edu/2024/10/08/insights-outcomes-neuron-networks-arctic-warming-and-neonatal-nutrition" target="_blank" rel="noopener"><b>Neuron networks, Arctic warming and neonatal nutrition</b></a>
+      <div class="pubtags"><span class="pubtag contrib">Contributor</span></div>
+    </div>
+  </div>
+</blockquote>
+
+<blockquote class="pub" data-area="author">
+  <div class="row">
+    <div class="column left">
+      <i>USA Today</i>
+      <br>
+      (2020)
+    </div>
+    <div class="column middle">
+      <a href="https://www.usatoday.com/story/news/world/2020/07/05/northern-ireland-brexit-renews-discussions-sovereignty-identity/3074060001/" target="_blank" rel="noopener"><b>In Northern Ireland, Brexit renews discussions on sovereignty and identity around an unclear border</b></a>
+      <div class="pubtags"><span class="pubtag author">Author</span></div>
+    </div>
+  </div>
+</blockquote>
+
+<blockquote class="pub" data-area="author">
+  <div class="row">
+    <div class="column left">
+      <i>Yale Daily News</i>
+      <br>
+      (2020)
+    </div>
+    <div class="column middle">
+      <a href="https://yaledailynews.com/articles/rothberg-family-donates-2-million-for-yale-covid-19-response" target="_blank" rel="noopener"><b>Rothberg family donates $2 million for Yale COVID-19 response</b></a>
+      <div class="pubtags"><span class="pubtag author">Author</span></div>
+    </div>
+  </div>
+</blockquote>
+
+<blockquote class="pub" data-area="contrib">
+  <div class="row">
+    <div class="column left">
+      <i>MIT News</i>
+      <br>
+      (2020)
+    </div>
+    <div class="column middle">
+      <a href="https://news.mit.edu/2020/warning-labels-fake-news-trustworthy-0303" target="_blank" rel="noopener"><b>The catch to putting warning labels on fake news</b></a>
+      <div class="pubtags"><span class="pubtag contrib">Contributor</span></div>
+    </div>
+  </div>
+</blockquote>
+
+<p class="pubempty">No articles match your search.</p>
 
 </div>
 
@@ -351,9 +549,49 @@ Spencer D D
 <br>
 <br>
 
+<script>
+  // Tabs + search for each section (design 1 behavior)
+  document.querySelectorAll(".pubsection").forEach(function (sec) {
+    const pubs = [...sec.querySelectorAll(".pub")];
+    const tabs = [...sec.querySelectorAll(".pubtab")];
+    const search = sec.querySelector(".pubsearch");
+    const empty = sec.querySelector(".pubempty");
+    let area = "all";
+    // remember each title's original HTML so search highlights can be cleared
+    pubs.forEach(p => { const t = p.querySelector(".column.middle a b"); p._title = t; p._html = t.innerHTML; p._text = p.textContent.replace(/\s+/g, " ").toLowerCase(); });
+    const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    function apply() {
+      const q = search.value.trim().toLowerCase();
+      let n = 0;
+      pubs.forEach(p => {
+        const inArea = area === "all" || (area === "first" ? !!p.querySelector(".pubtag.first") : p.dataset.area === area);
+        const show = inArea && (!q || p._text.includes(q));
+        p.classList.toggle("hide", !show);
+        p._title.innerHTML = q && show ? p._html.replace(new RegExp("(" + esc(q) + ")", "gi"), "<mark>$1</mark>") : p._html;
+        n += show;
+      });
+      empty.style.display = n ? "none" : "block";
+    }
+    tabs.forEach(t => t.addEventListener("click", () => {
+      area = t.dataset.area;
+      tabs.forEach(x => { x.classList.toggle("on", x === t); x.setAttribute("aria-selected", x === t); });
+      apply();
+    }));
+    search.addEventListener("input", apply);
+    apply();
+  });
+</script>
+
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
+
+<script>
+  document.getElementById("themetoggle").addEventListener("click", function () {
+    var dark = document.documentElement.classList.toggle("dark");
+    try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
+  });
+</script>
 </body>
 
 </html>
